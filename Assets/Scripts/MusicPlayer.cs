@@ -26,7 +26,8 @@ public class MusicPlayer : MonoBehaviour {
 	}
 	
 	void OnLevelWasLoaded(int level){
-		music.Stop ();
+		music = GetComponent<AudioSource>();
+		music.Stop();
 		
 		if(level == 0){
 			music.clip = startClip;

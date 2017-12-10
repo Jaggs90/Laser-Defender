@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public float health = 250f;
 	
 	public AudioClip fireSound;
+	public AudioClip Death;
 	
 	private float xMin = -5;
 	private float xMax = 5;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour {
  
  	void Die(){
  		LevelManager man = GameObject.Find("LevelManager").GetComponent<LevelManager>();
- 		man.LoadLevel("Win Screen");
+		man.LoadLevel("Win Screen");
  		Destroy(gameObject);
  	}
  
