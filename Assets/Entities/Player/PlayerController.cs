@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour {
 	public float firingRate = 0.2f;
 	public float health = 250f;
 	
-	float xMin = -5;
-	float xMax = 5;
+	public AudioClip fireSound;
+	
+	private float xMin = -5;
+	private float xMax = 5;
 	
 	void Start() {
 		float distance = transform.position.z - Camera.main.transform.position.z;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 			Vector3 offset = new Vector3(0, 1, 0);
 			GameObject Beam = Instantiate(Projectile, transform.position + offset, Quaternion.identity) as GameObject;
 			Beam.rigidbody2D.velocity = new Vector3(0,ProjectileSpeed, 0);
+			AudioSource.PlayClipAtPoint(fireSound, transform.position);
 		
 	}
 	void Update () {
