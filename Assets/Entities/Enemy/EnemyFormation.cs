@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyBehaviour : MonoBehaviour {
+public class EnemyFormation : MonoBehaviour {
 	public GameObject Projectile;
 	
 	public float health = 150;
