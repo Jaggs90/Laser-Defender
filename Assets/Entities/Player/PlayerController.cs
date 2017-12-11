@@ -7,15 +7,20 @@ public class PlayerController : MonoBehaviour {
 	public GameObject Projectile;
 	public float ProjectileSpeed;
 	public float firingRate = 0.2f;
-	public float health = 250f;
+	public float playerHealth = 500f;
+	public int healthValue = -100;
 	
 	public AudioClip fireSound;
 	public AudioClip Death;
+	public AudioClip hitSound;
 	
 	private float xMin = -5;
 	private float xMax = 5;
 	
+	private Health healthBar;
+	
 	void Start() {
+		healthBar = GameObject.Find("HealthInt").GetComponent<Health>();
 		float distance = transform.position.z - Camera.main.transform.position.z;
 		Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0,0,distance));
 		Vector3 rightmost = Camera.main.ViewportToWorldPoint(new Vector3(1,0,distance));
@@ -59,10 +64,12 @@ public class PlayerController : MonoBehaviour {
 		
 		Projectile missle = collider.gameObject.GetComponent<Projectile>();
 		if(missle){
+			healthBar.HealthBar(healthValue);
 			Debug.Log ("Player collided with the missle");
-			health -= missle.GetDamage();
+			playerHealth -= missle.GetDamage();
 			missle.Hit();
-			if (health <= 0) {
+			AudioSource.PlayClipAtPoint(hitSound, transform.position);
+			if (playerHealth <= 0) {
 				Die ();
 			}
 			
